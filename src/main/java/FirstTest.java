@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -32,8 +33,6 @@ public class FirstTest {
         By surname = By.xpath("//input[@data-qa-node='lastNamedebitSource']");
 
 
-
-
         driver.findElement(phoneNumber).sendKeys("677013326");
         driver.findElement(amount).sendKeys(Keys.CONTROL+"A");
         driver.findElement(amount).sendKeys("55");
@@ -43,6 +42,22 @@ public class FirstTest {
         driver.findElement(name).sendKeys("Vadym");
         driver.findElement(surname).sendKeys("Potorzhynkyi");
         driver.findElement(submitBtn).submit();
+
+
+
+
+        By recipient = By.xpath("//span[@data-qa-node='nameB']");
+        By card = By.xpath("//td[@data-qa-node='card']");
+        By details = By.xpath("//*[contains(@data-qa-node,'details')]");
+        By category = By.xpath("//div[@data-qa-node='category']");
+        By amountUAH = By.xpath("//div[@data-qa-node='amount']");
+
+
+       Assertions.assertEquals("Kyivstar Ukraine", driver.findElement(recipient).getText());
+       Assertions.assertEquals("4552 **** **** 8217", driver.findElement(card).getText());
+       Assertions.assertEquals("Поповнення телефону. На номер +380677013326", driver.findElement(details).getText());
+       Assertions.assertEquals("55 UAH", driver.findElement(amountUAH).getText());
+       Assertions.assertEquals("Поповнення мобільного", driver.findElement(category).getText());
 
 
 
